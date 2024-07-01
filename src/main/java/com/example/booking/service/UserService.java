@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
  // Импортируем BCryptPasswordEncoder из Spring Security
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class UserService {
@@ -20,5 +22,9 @@ public class UserService {
         user.setEmail(registrationDto.getEmail());
         user.setPassword(registrationDto.getPassword());
         userRepository.save(user);
+    }
+
+    public List<User> findAll (){
+        return userRepository.findAll();
     }
 }

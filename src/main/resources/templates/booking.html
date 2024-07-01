@@ -1,3 +1,38 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--  <meta charset="UTF-8">-->
+<!--  <title>Book Resource</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<nav>-->
+<!--  <ul>-->
+<!--    <li><a href="/">Home</a></li>-->
+<!--    <li><a href="/resources">Resources</a></li>-->
+<!--    &lt;!&ndash; Добавьте другие пункты меню по мере необходимости &ndash;&gt;-->
+<!--  </ul>-->
+<!--</nav>-->
+
+<!--<h1>Book Resource</h1>-->
+<!--<form action="/bookings" method="post">-->
+<!--  <label for="resourceId">Resource ID:</label>-->
+<!--  <input type="text" id="resourceId" name="resourceId" required>-->
+<!--  <br>-->
+<!--  <label for="userId">User ID:</label>-->
+<!--  <input type="text" id="userId" name="userId" required>-->
+<!--  <br>-->
+<!--  <label for="startTime">Start Time:</label>-->
+<!--  <input type="datetime-local" id="startTime" name="startTime" required>-->
+<!--  <br>-->
+<!--  <label for="endTime">End Time:</label>-->
+<!--  <input type="datetime-local" id="endTime" name="endTime" required>-->
+<!--  <br>-->
+<!--  <button type="submit">Book Resource</button>-->
+<!--</form>-->
+
+<!--</body>-->
+<!--</html>-->
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -15,11 +50,17 @@
 
 <h1>Book Resource</h1>
 <form action="/bookings" method="post">
-  <label for="resourceId">Resource ID:</label>
-  <input type="text" id="resourceId" name="resourceId" required>
+  <label for="resourceId">Resource:</label>
+  <select id="resourceId" name="resourceId" required>
+    <option value="" disabled selected>Select a resource</option>
+    <option th:each="resource : ${resources}" th:value="${resource.id}" th:text="${resource.name}"></option>
+  </select>
   <br>
-  <label for="userId">User ID:</label>
-  <input type="text" id="userId" name="userId" required>
+  <label for="userId">User:</label>
+  <select id="userId" name="userId" required>
+    <option value="" disabled selected>Select a user</option>
+    <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.username}"></option>
+  </select>
   <br>
   <label for="startTime">Start Time:</label>
   <input type="datetime-local" id="startTime" name="startTime" required>
