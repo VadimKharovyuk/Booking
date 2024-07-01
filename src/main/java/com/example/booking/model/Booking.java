@@ -32,4 +32,6 @@ public class Booking {
 
     @Transient
     private String formattedStartTime;
+
+
 }

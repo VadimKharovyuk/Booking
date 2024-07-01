@@ -1,40 +1,70 @@
+<!--&lt;!&ndash;<!DOCTYPE html>&ndash;&gt;-->
+<!--&lt;!&ndash;<html xmlns:th="http://www.thymeleaf.org">&ndash;&gt;-->
+<!--&lt;!&ndash;<head>&ndash;&gt;-->
+<!--&lt;!&ndash;    <meta charset="UTF-8">&ndash;&gt;-->
+<!--&lt;!&ndash;    <title>Resources</title>&ndash;&gt;-->
+<!--&lt;!&ndash;</head>&ndash;&gt;-->
+<!--&lt;!&ndash;<body>&ndash;&gt;-->
+<!--&lt;!&ndash;<nav>&ndash;&gt;-->
+<!--&lt;!&ndash;    <ul>&ndash;&gt;-->
+<!--&lt;!&ndash;        <li><a href="/">Home</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;        <li><a href="/resources">Resources</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;        &lt;!&ndash; Добавьте другие пункты меню по мере необходимости &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;    </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;</nav>&ndash;&gt;-->
+
+<!--&lt;!&ndash;<h1>Available Resources</h1>&ndash;&gt;-->
+<!--&lt;!&ndash;<div>&ndash;&gt;-->
+<!--&lt;!&ndash;    <table>&ndash;&gt;-->
+<!--&lt;!&ndash;        <thead>&ndash;&gt;-->
+<!--&lt;!&ndash;        <tr>&ndash;&gt;-->
+<!--&lt;!&ndash;            <th>ID</th>&ndash;&gt;-->
+<!--&lt;!&ndash;            <th>Name</th>&ndash;&gt;-->
+<!--&lt;!&ndash;            <th>Description</th>&ndash;&gt;-->
+<!--&lt;!&ndash;            <th>Available</th>&ndash;&gt;-->
+<!--&lt;!&ndash;        </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;        </thead>&ndash;&gt;-->
+<!--&lt;!&ndash;        <tbody>&ndash;&gt;-->
+<!--&lt;!&ndash;        <tr th:each="resource : ${resources}">&ndash;&gt;-->
+<!--&lt;!&ndash;            <td th:text="${resource.id}">ID</td>&ndash;&gt;-->
+<!--&lt;!&ndash;            <td th:text="${resource.name}">Name</td>&ndash;&gt;-->
+<!--&lt;!&ndash;            <td th:text="${resource.description}">Description</td>&ndash;&gt;-->
+<!--&lt;!&ndash;            <td th:text="${resource.available} ? 'Yes' : 'No'">Available</td>&ndash;&gt;-->
+<!--&lt;!&ndash;        </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;        </tbody>&ndash;&gt;-->
+<!--&lt;!&ndash;    </table>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;<h2>Add New Resource</h2>&ndash;&gt;-->
+<!--&lt;!&ndash;<form action="/resources" method="post">&ndash;&gt;-->
+<!--&lt;!&ndash;    <label>Name:</label>&ndash;&gt;-->
+<!--&lt;!&ndash;    <input type="text" name="name" required>&ndash;&gt;-->
+<!--&lt;!&ndash;    <br>&ndash;&gt;-->
+<!--&lt;!&ndash;    <label>Description:</label>&ndash;&gt;-->
+<!--&lt;!&ndash;    <input type="text" name="description">&ndash;&gt;-->
+<!--&lt;!&ndash;    <br>&ndash;&gt;-->
+<!--&lt;!&ndash;    <label>Available:</label>&ndash;&gt;-->
+<!--&lt;!&ndash;    <input type="checkbox" name="available">&ndash;&gt;-->
+<!--&lt;!&ndash;    <br>&ndash;&gt;-->
+<!--&lt;!&ndash;    <button type="submit">Add Resource</button>&ndash;&gt;-->
+<!--&lt;!&ndash;</form>&ndash;&gt;-->
+
+<!--&lt;!&ndash;</body>&ndash;&gt;-->
+<!--&lt;!&ndash;</html>&ndash;&gt;-->
+
+
 <!--<!DOCTYPE html>-->
 <!--<html xmlns:th="http://www.thymeleaf.org">-->
 <!--<head>-->
-<!--    <meta charset="UTF-8">-->
 <!--    <title>Resources</title>-->
 <!--</head>-->
 <!--<body>-->
-<!--<nav>-->
-<!--    <ul>-->
-<!--        <li><a href="/">Home</a></li>-->
-<!--        <li><a href="/resources">Resources</a></li>-->
-<!--        &lt;!&ndash; Добавьте другие пункты меню по мере необходимости &ndash;&gt;-->
-<!--    </ul>-->
-<!--</nav>-->
-
-<!--<h1>Available Resources</h1>-->
-<!--<div>-->
-<!--    <table>-->
-<!--        <thead>-->
-<!--        <tr>-->
-<!--            <th>ID</th>-->
-<!--            <th>Name</th>-->
-<!--            <th>Description</th>-->
-<!--            <th>Available</th>-->
-<!--        </tr>-->
-<!--        </thead>-->
-<!--        <tbody>-->
-<!--        <tr th:each="resource : ${resources}">-->
-<!--            <td th:text="${resource.id}">ID</td>-->
-<!--            <td th:text="${resource.name}">Name</td>-->
-<!--            <td th:text="${resource.description}">Description</td>-->
-<!--            <td th:text="${resource.available} ? 'Yes' : 'No'">Available</td>-->
-<!--        </tr>-->
-<!--        </tbody>-->
-<!--    </table>-->
-<!--</div>-->
-
+<!--<h1>Resources List</h1>-->
+<!--<ul>-->
+<!--    <li th:each="resource : ${resources}">-->
+<!--        <a th:href="@{'/resources/' + ${resource.id}}" th:text="${resource.name}"></a>-->
+<!--    </li>-->
+<!--</ul>-->
 <!--<h2>Add New Resource</h2>-->
 <!--<form action="/resources" method="post">-->
 <!--    <label>Name:</label>-->
@@ -48,23 +78,63 @@
 <!--    <br>-->
 <!--    <button type="submit">Add Resource</button>-->
 <!--</form>-->
-
 <!--</body>-->
 <!--</html>-->
-
 
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
     <title>Resources</title>
+    <style>
+        /* Стили для карточек */
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px; /* Расстояние между карточками */
+        }
+        .card {
+            width: calc(25% - 20px); /* Четыре карточки в ряду с отступом */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+        .card:hover {
+            transform: scale(1.05); /* Увеличение при наведении */
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+        .card a {
+            text-decoration: none;
+            color: #333;
+        }
+    </style>
 </head>
 <body>
-<h1>Resources List</h1>
-<ul>
-    <li th:each="resource : ${resources}">
-        <a th:href="@{'/resources/' + ${resource.id}}" th:text="${resource.name}"></a>
-    </li>
-</ul>
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/resources">Resources</a></li>
+        <!-- Добавьте другие пункты меню по мере необходимости -->
+    </ul>
+</nav>
+
+<h1>Available Resources</h1>
+
+<!-- Контейнер для карточек -->
+<div class="card-container">
+    <!-- Используем th:each для перебора ресурсов и создания карточек -->
+    <div th:each="resource : ${resources}" class="card">
+        <a th:href="@{'/resources/' + ${resource.id}}">
+            <h3 th:text="${resource.name}"></h3>
+            <p th:text="${resource.description}"></p>
+            <p th:text="${resource.available ? 'Available' : 'Not Available'}"></p>
+        </a>
+    </div>
+</div>
+
 <h2>Add New Resource</h2>
 <form action="/resources" method="post">
     <label>Name:</label>
@@ -78,5 +148,6 @@
     <br>
     <button type="submit">Add Resource</button>
 </form>
+
 </body>
 </html>

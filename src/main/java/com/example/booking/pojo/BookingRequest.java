@@ -12,4 +12,8 @@ public class BookingRequest  implements Serializable {
     private Long resourceId;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
+
+
+
+
 }

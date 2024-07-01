@@ -19,18 +19,20 @@ public class BookingListener {
     private final BookingService bookingService;
 
 @RabbitListener( queues = "bookingQueue")
-//    @RabbitListener(
+    public void handleBookingRequest(BookingRequest request) {
+        bookingService.createBooking(request);
+
+    }
+
+
+
+//
+//        @RabbitListener(
 //            bindings = @QueueBinding(
 //                    value = @Queue(value = "bookingQueue", durable = "true"),
 //                    exchange = @Exchange(value = "bookingExchange", durable = "true", type = ExchangeTypes.FANOUT)
 //            )
 //    )
-//    public void handleBookingRequest(BookingRequest request) {
-//        bookingService.createBooking(request);
-//
-//    }
-    public void handleBookingRequest(BookingRequest request) {
-        bookingService.createBooking(request);
-    }
+
 
 }

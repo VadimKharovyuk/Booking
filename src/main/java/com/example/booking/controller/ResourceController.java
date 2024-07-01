@@ -1,6 +1,7 @@
 package com.example.booking.controller;
 
 import com.example.booking.model.Resource;
+
 import com.example.booking.service.ResourceService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +17,19 @@ public class ResourceController {
 
     private final ResourceService resourceService;
 
-    @GetMapping("")
-    public String getAllResources(Model model) {
-        model.addAttribute("resources", resourceService.findAll());
-        return "resources";
+@GetMapping()
+public String showAddResourceForm(Model model) {
+    model.addAttribute("resources", resourceService.findAll());
+
+    return "resources";
+}
+
+    @PostMapping()
+    public String addResource(@ModelAttribute("resource") Resource resource) {
+        resourceService.addResource(resource);
+        return "redirect:/resources";
     }
+
 
     @GetMapping("/{id}")
     public String getResourceById(@PathVariable Long id, Model model) {
@@ -28,12 +37,4 @@ public class ResourceController {
         model.addAttribute("resource", resource);
         return "resource_details";
     }
-
-    @PostMapping("")
-    public String addResource(@ModelAttribute Resource resource) {
-        resourceService.addResource(resource);
-        return "redirect:/resources";
-    }
-
-    // Другие методы контроллера, если необходимо
 }

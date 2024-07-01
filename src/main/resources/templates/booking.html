@@ -1,40 +1,99 @@
 
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--  <meta charset="UTF-8">-->
+<!--  <title>Book Resource</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<nav>-->
+<!--  <ul>-->
+<!--    <li><a href="/">Home</a></li>-->
+<!--    <li><a href="/resources">Resources</a></li>-->
+<!--    &lt;!&ndash; Добавьте другие пункты меню по мере необходимости &ndash;&gt;-->
+<!--  </ul>-->
+<!--</nav>-->
+
+<!--<form action="/bookings" method="post">-->
+<!--  <label for="resourceId">Resource:</label>-->
+<!--  <select id="resourceId" name="resourceId" required>-->
+<!--    <option value="" disabled selected>Select a resource</option>-->
+<!--    <option th:each="resource : ${resources}" th:value="${resource.id}" th:text="${resource.name}"></option>-->
+<!--  </select>-->
+<!--  <br>-->
+<!--  <label for="userId">User:</label>-->
+<!--  <select id="userId" name="userId" required>-->
+<!--    <option value="" disabled selected>Select a user</option>-->
+<!--    <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.username}"></option>-->
+<!--  </select>-->
+<!--  <br>-->
+<!--  <label for="startTime">Start Time:</label>-->
+<!--  <input type="datetime-local" id="startTime" name="startTime" required>-->
+<!--  <br>-->
+<!--  <label for="endTime">End Time:</label>-->
+<!--  <input type="datetime-local" id="endTime" name="endTime" required>-->
+<!--  <br>-->
+<!--  <button type="submit">Book Resource</button>-->
+<!--</form>-->
+
+<!--</body>-->
+<!--</html>-->
+
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>Book Resource</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-<nav>
-  <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/resources">Resources</a></li>
-    <!-- Добавьте другие пункты меню по мере необходимости -->
-  </ul>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">Home</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="/resources">Resources</a>
+      </li>
+      <!-- Add other menu items as needed -->
+    </ul>
+  </div>
 </nav>
 
-<form action="/bookings" method="post">
-  <label for="resourceId">Resource:</label>
-  <select id="resourceId" name="resourceId" required>
-    <option value="" disabled selected>Select a resource</option>
-    <option th:each="resource : ${resources}" th:value="${resource.id}" th:text="${resource.name}"></option>
-  </select>
-  <br>
-  <label for="userId">User:</label>
-  <select id="userId" name="userId" required>
-    <option value="" disabled selected>Select a user</option>
-    <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.username}"></option>
-  </select>
-  <br>
-  <label for="startTime">Start Time:</label>
-  <input type="datetime-local" id="startTime" name="startTime" required>
-  <br>
-  <label for="endTime">End Time:</label>
-  <input type="datetime-local" id="endTime" name="endTime" required>
-  <br>
-  <button type="submit">Book Resource</button>
-</form>
+<div class="container mt-4">
+  <h1>Book Resource</h1>
+  <form action="/bookings" method="post">
+    <div class="form-group">
+      <label for="resourceId">Resource:</label>
+      <select class="form-control" id="resourceId" name="resourceId" required>
+        <option value="" disabled selected>Select a resource</option>
+        <option th:each="resource : ${resources}" th:value="${resource.id}" th:text="${resource.name}"></option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="userId">User:</label>
+      <select class="form-control" id="userId" name="userId" required>
+        <option value="" disabled selected>Select a user</option>
+        <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.username}"></option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="startTime">Start Time:</label>
+      <input type="datetime-local" class="form-control" id="startTime" name="startTime" required>
+    </div>
+    <div class="form-group">
+      <label for="endTime">End Time:</label>
+      <input type="datetime-local" class="form-control" id="endTime" name="endTime" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Book Resource</button>
+  </form>
+</div>
 
+<!-- Bootstrap JS (Optional, if you need Bootstrap JavaScript features) -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
