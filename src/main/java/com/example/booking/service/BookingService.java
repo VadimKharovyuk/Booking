@@ -62,6 +62,8 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class BookingService {
@@ -91,5 +93,9 @@ public class BookingService {
 
 
 
+    }
+
+  public List<Booking> bookingList(){
+       return bookingRepository.findAll();
     }
 }

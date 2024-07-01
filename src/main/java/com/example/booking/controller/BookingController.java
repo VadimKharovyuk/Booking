@@ -44,6 +44,7 @@
 
 package com.example.booking.controller;
 
+import com.example.booking.model.Booking;
 import com.example.booking.pojo.BookingRequest;
 import com.example.booking.model.Resource;
 import com.example.booking.model.User;
@@ -60,6 +61,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -100,4 +104,16 @@ public class BookingController {
 
         return "redirect:/bookings/booking-successful";
     }
+    @GetMapping("/all")
+    public String getAllBooking(Model model) {
+        List<Booking> bookings = bookingService.bookingList();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        bookings.forEach(booking -> booking.setFormattedStartTime(booking.getStartTime().format(formatter)));
+        model.addAttribute("bookings", bookings);
+        return "allBooking";
+    }
+
+
+
+
 }

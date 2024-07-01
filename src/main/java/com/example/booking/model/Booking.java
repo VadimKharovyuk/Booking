@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 
 @Entity
@@ -18,6 +19,7 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
     @ManyToOne
     private User user;
 
@@ -25,7 +27,8 @@ public class Booking {
     private Resource resource;
 
     private LocalDateTime startTime;
-
     private LocalDateTime endTime;
 
+    @Transient
+    private String formattedStartTime;
 }

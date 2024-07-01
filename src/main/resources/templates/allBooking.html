@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Bookings</title>
+</head>
+<body>
+<h1>All Bookings</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Booking ID</th>
+        <th>User</th>
+        <th>Class</th>
+<!--        <th>Start Time</th>-->
+<!--        <th>End Time</th>-->
+        <th>Status</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="booking : ${bookings}">
+        <td th:text="${booking.id}">1</td>
+        <td th:text="${booking.user.username}">User</td>
+        <td th:text="${booking.resource.name}">Class</td>
+<!--        <td th:text="${#dates.format(booking.startTime, 'yyyy-MM-dd HH:mm')}">Start Time</td>-->
+<!--        <td th:text="${#dates.format(booking.endTime, 'yyyy-MM-dd HH:mm')}">End Time</td>-->
+        <td th:text="${booking.resource.available ? 'Available' : 'Not Available'}">Status</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
