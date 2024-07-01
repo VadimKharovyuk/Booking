@@ -10,6 +10,4 @@ public class LoginController {
     public String showLoginForm() {
         return "login-form";
     }
-
-    // Дополнительная логика для обработки входа пользователя может быть добавлена здесь
 }

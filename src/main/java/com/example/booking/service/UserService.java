@@ -18,7 +18,7 @@ public class UserService {
         User user = new User();
         user.setUsername(registrationDto.getUsername());
         user.setEmail(registrationDto.getEmail());
-        user.setPassword(registrationDto.getPassword()); // Убедитесь, что пароль корректно устанавливается
+        user.setPassword(registrationDto.getPassword());
         userRepository.save(user);
     }
 }

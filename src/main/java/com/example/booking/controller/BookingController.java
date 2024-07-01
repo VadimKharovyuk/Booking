@@ -3,6 +3,7 @@ package com.example.booking.controller;
 import com.example.booking.pojo.BookingRequest;
 import com.example.booking.service.BookingService;
 import lombok.AllArgsConstructor;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -29,11 +30,12 @@ public String bookingssuccessful(){
     @PostMapping("")
     public String createBooking(@ModelAttribute("bookingRequest")  @Validated BookingRequest bookingRequest, BindingResult result) {
         if (result.hasErrors()) {
-            // Обработка ошибок валидации, если требуется
+
             return "booking";
         }
 
         bookingService.createBooking(bookingRequest);
+
         return "redirect:/bookings/booking-successful";
     }
 }

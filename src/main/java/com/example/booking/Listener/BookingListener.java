@@ -8,6 +8,7 @@ import org.springframework.amqp.rabbit.annotation.Exchange;
 import org.springframework.amqp.rabbit.annotation.Queue;
 import org.springframework.amqp.rabbit.annotation.QueueBinding;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,16 +18,19 @@ public class BookingListener {
 
     private final BookingService bookingService;
 
-//    @RabbitListener(queues = "bookingQueue")
-@RabbitListener(
-        bindings = @QueueBinding(
-                value = @Queue(value = "bookingQueue", durable = "true"),
-                exchange = @Exchange(value = "bookingExchange", durable = "true", type = ExchangeTypes.DIRECT),
-                key = "booking"
-        )
-)
-
+@RabbitListener( queues = "bookingQueue")
+//    @RabbitListener(
+//            bindings = @QueueBinding(
+//                    value = @Queue(value = "bookingQueue", durable = "true"),
+//                    exchange = @Exchange(value = "bookingExchange", durable = "true", type = ExchangeTypes.FANOUT)
+//            )
+//    )
+//    public void handleBookingRequest(BookingRequest request) {
+//        bookingService.createBooking(request);
+//
+//    }
     public void handleBookingRequest(BookingRequest request) {
         bookingService.createBooking(request);
     }
+
 }
