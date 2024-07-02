@@ -1,5 +1,8 @@
 package com.example.booking.pojo;
 
+import com.example.booking.model.Resource;
+import com.example.booking.model.User;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,6 +16,9 @@ public class BookingRequest  implements Serializable {
     private LocalDateTime startTime;
     private LocalDateTime endTime;
 
+
+    private User user;
+    private Resource resource;
 
 
 

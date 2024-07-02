@@ -27,4 +27,8 @@ public class UserService {
     public List<User> findAll (){
         return userRepository.findAll();
     }
+
+    public boolean emailExists(String email) {
+        return userRepository.existsByEmail(email); // Метод existsByEmail должен быть определен в UserRepository
+    }
 }

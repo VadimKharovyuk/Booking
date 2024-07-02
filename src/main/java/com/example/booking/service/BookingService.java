@@ -43,8 +43,8 @@ public class BookingService {
 
     }
 
-    public List<Booking> bookingList(){
-       return bookingRepository.findAll();
+    public List<Booking> bookingList() {
+        return bookingRepository.findAll();
     }
 
     @Transactional
@@ -54,5 +54,11 @@ public class BookingService {
 
         bookingRepository.delete(booking);
         emailService.sendBookingCancellation(booking.getUser(), booking.getResource());
+    }
+
+    public void createBooking(Booking booking) {
+        // Возможно, здесь также нужно выполнить дополнительные проверки или предварительные действия
+
+        bookingRepository.save(booking);
     }
 }

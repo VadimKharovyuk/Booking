@@ -31,11 +31,6 @@ public class ResourceService {
         return resource;
     }
 
-    public void updateResource(Resource resource) {
-        resourceRepository.save(resource);
-        redisTemplate.opsForValue().set("resource_" + resource.getId(), resource);
-    }
-
     public void addResource(Resource resource) {
         resourceRepository.save(resource);
     }

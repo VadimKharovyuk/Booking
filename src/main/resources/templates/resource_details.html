@@ -1,41 +1,58 @@
-<!--<!DOCTYPE html>-->
-<!--<html xmlns:th="http://www.thymeleaf.org">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>Resource Details</title>-->
-<!--</head>-->
-<!--<body>-->
-<!--<nav>-->
-<!--    <ul>-->
-<!--        <li><a href="/">Home</a></li>-->
-<!--        <li><a href="/resources">Resources</a></li>-->
-<!--        &lt;!&ndash; Добавьте другие пункты меню по мере необходимости &ndash;&gt;-->
-<!--    </ul>-->
-<!--</nav>-->
-
-<!--<h1>Resource Details</h1>-->
-<!--<div>-->
-<!--    <h2>Resource Information</h2>-->
-<!--    <p><strong>ID:</strong> <span th:text="${resource.id}">Resource ID</span></p>-->
-<!--    <p><strong>Name:</strong> <span th:text="${resource.name}">Resource Name</span></p>-->
-<!--    <p><strong>Description:</strong> <span th:text="${resource.description}">Resource Description</span></p>-->
-<!--    <p><strong>Available:</strong> <span th:text="${resource.available} ? 'Yes' : 'No'">Resource Availability</span></p>-->
-<!--</div>-->
-
-<!--</body>-->
-<!--</html>-->
-
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
     <title>Resource Details</title>
+    <!-- Подключаем Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
 </head>
 <body>
-<h1>Resource Details</h1>
-<p><strong>ID:</strong> <span th:text="${resource.id}"></span></p>
-<p><strong>Name:</strong> <span th:text="${resource.name}"></span></p>
-<p><strong>Description:</strong> <span th:text="${resource.description}"></span></p>
-<p><strong>Available:</strong> <span th:text="${resource.available}"></span></p>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">Booking System</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/resources}">Resources</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/bookings}">My Bookings</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/register}">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/bookings/all}">All Bookings</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <h1>Resource Details</h1>
+    <p><strong>ID:</strong> <span th:text="${resource.id}"></span></p>
+    <p><strong>Name:</strong> <span th:text="${resource.name}"></span></p>
+    <p><strong>Description:</strong> <span th:text="${resource.description}"></span></p>
+    <p><strong>Available:</strong> <span th:text="${resource.available}"></span></p>
+</div>
+
+<!-- Подключаем Bootstrap JS и jQuery (для некоторых компонентов Bootstrap) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
