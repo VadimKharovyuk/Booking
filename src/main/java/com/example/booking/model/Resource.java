@@ -25,4 +25,5 @@ public class Resource {
     private boolean available;
 
 
+
 }
