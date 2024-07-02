@@ -1,4 +1,6 @@
 package com.example.booking.config;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.EnableCaching;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,30 +14,39 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 import java.time.Duration;
 
+
 @Configuration
+@EnableCaching
 public class RedisConfig {
-
     @Bean
-    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory connectionFactory) {
-        RedisTemplate<String, Object> template = new RedisTemplate<>();
-        template.setConnectionFactory(connectionFactory);
-        template.setKeySerializer(new StringRedisSerializer());
-        template.setValueSerializer(new GenericJackson2JsonRedisSerializer());
-        template.setHashKeySerializer(new StringRedisSerializer());
-        template.setHashValueSerializer(new GenericJackson2JsonRedisSerializer());
-        return template;
-    }
-
-    @Bean
-    public RedisCacheManager cacheManager(RedisConnectionFactory connectionFactory) {
-        RedisCacheConfiguration cacheConfiguration = RedisCacheConfiguration.defaultCacheConfig()
-                .entryTtl(Duration.ofMinutes(1)) // Установка TTL на 10 минут
-                .disableCachingNullValues()
+    public CacheManager cacheManager(RedisConnectionFactory redisConnectionFactory) {
+        RedisCacheConfiguration cacheConfig = RedisCacheConfiguration.defaultCacheConfig()
+                .entryTtl(Duration.ofMinutes(1))
                 .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(new StringRedisSerializer()))
                 .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer()));
 
-        return RedisCacheManager.builder(connectionFactory)
-                .cacheDefaults(cacheConfiguration)
+        return RedisCacheManager.builder(redisConnectionFactory)
+                .cacheDefaults(cacheConfig)
                 .build();
     }
+    @Bean
+    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
+        RedisTemplate<String, Object> template = new RedisTemplate<>();
+        template.setConnectionFactory(redisConnectionFactory);
+
+        // Use GenericJackson2JsonRedisSerializer for value serialization
+        GenericJackson2JsonRedisSerializer serializer = new GenericJackson2JsonRedisSerializer();
+
+        template.setKeySerializer(new StringRedisSerializer());
+        template.setValueSerializer(serializer);
+        template.setHashKeySerializer(new StringRedisSerializer());
+        template.setHashValueSerializer(serializer);
+
+        return template;
+    }
+
+
+
+
+
 }

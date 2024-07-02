@@ -26,7 +26,7 @@ public class BookingListener {
         booking.setResource(resource);
 
 
-        System.out.println(" Вызов сервиса для создания бронирования" );
+        System.out.println(" Вызов сервиса для создания бронирования c bookingQueue" );
         bookingService.createBooking(booking);
     }
 }

@@ -29,6 +29,6 @@ public class UserService {
     }
 
     public boolean emailExists(String email) {
-        return userRepository.existsByEmail(email); // Метод existsByEmail должен быть определен в UserRepository
+        return userRepository.existsByEmail(email);
     }
 }

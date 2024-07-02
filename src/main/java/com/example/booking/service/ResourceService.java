@@ -3,6 +3,7 @@ package com.example.booking.service;
 import com.example.booking.model.Resource;
 import com.example.booking.repository.ResourceRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,6 @@ import java.util.List;
 @AllArgsConstructor
 public class ResourceService {
 
-    private final RedisTemplate<String, Object> redisTemplate;
     private final ResourceRepository resourceRepository;
 
 
@@ -21,14 +21,9 @@ public class ResourceService {
     }
 
 
-
+    @Cacheable(value = "getResourceById", key = "#id")
     public Resource getResourceById(Long id) {
-        Resource resource = (Resource) redisTemplate.opsForValue().get("resource_" + id);
-        if (resource == null) {
-            resource = resourceRepository.findById(id).orElseThrow();
-            redisTemplate.opsForValue().set("resource_" + id, resource);
-        }
-        return resource;
+          return   resourceRepository.findById(id).orElseThrow();
     }
 
     public void addResource(Resource resource) {

@@ -57,8 +57,6 @@ public class BookingService {
     }
 
     public void createBooking(Booking booking) {
-        // Возможно, здесь также нужно выполнить дополнительные проверки или предварительные действия
-
         bookingRepository.save(booking);
     }
 }
