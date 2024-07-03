@@ -1,3 +1,88 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Resources</title>-->
+<!--    <style>-->
+<!--        /* Стили для карточек */-->
+<!--        .card-container {-->
+<!--            display: flex;-->
+<!--            flex-wrap: wrap;-->
+<!--            gap: 20px; /* Расстояние между карточками */-->
+<!--        }-->
+<!--        .card {-->
+<!--            width: calc(25% - 20px); /* Четыре карточки в ряду с отступом */-->
+<!--            border: 1px solid #ccc;-->
+<!--            border-radius: 5px;-->
+<!--            padding: 10px;-->
+<!--            box-shadow: 0 4px 8px rgba(0,0,0,0.1);-->
+<!--            text-align: center;-->
+<!--            transition: transform 0.3s ease-in-out;-->
+<!--        }-->
+<!--        .card:hover {-->
+<!--            transform: scale(1.05); /* Увеличение при наведении */-->
+<!--            box-shadow: 0 8px 16px rgba(0,0,0,0.2);-->
+<!--        }-->
+<!--        .card a {-->
+<!--            text-decoration: none;-->
+<!--            color: #333;-->
+<!--        }-->
+<!--        nav {-->
+<!--            background-color: #343a40;-->
+<!--            padding: 10px 0;-->
+<!--        }-->
+<!--        nav a {-->
+<!--            color: #fff;-->
+<!--            text-decoration: none;-->
+<!--            padding: 10px;-->
+<!--        }-->
+<!--        nav a:hover {-->
+<!--            background-color: #495057;-->
+<!--            border-radius: 5px;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<nav>-->
+<!--    <ul>-->
+<!--        <li><a href="/">Home</a></li>-->
+<!--        <li><a href="/resources">Resources</a></li>-->
+<!--        &lt;!&ndash; Добавьте другие пункты меню по мере необходимости &ndash;&gt;-->
+<!--    </ul>-->
+<!--</nav>-->
+
+<!--<h1 style="text-align: center">Available Resources</h1>-->
+
+<!--&lt;!&ndash; Контейнер для карточек &ndash;&gt;-->
+<!--<div class="card-container">-->
+<!--    &lt;!&ndash; Используем th:each для перебора ресурсов и создания карточек &ndash;&gt;-->
+<!--    <div th:each="resource : ${resources}" class="card">-->
+<!--        <a th:href="@{'/resources/' + ${resource.id}}">-->
+<!--            <h3 th:text="${resource.name}"></h3>-->
+<!--            <p th:text="${resource.description}"></p>-->
+<!--            <p th:text="${resource.available ? 'Available' : 'Not Available'}"></p>-->
+<!--        </a>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<h2>Add New Resource</h2>-->
+<!--<form action="/resources" method="post">-->
+<!--    <label>Name:</label>-->
+<!--    <input type="text" name="name" required>-->
+<!--    <br>-->
+<!--    <label>Description:</label>-->
+<!--    <input type="text" name="description">-->
+<!--    <br>-->
+<!--    <label>Available:</label>-->
+<!--    <input type="checkbox" name="available">-->
+<!--    <br>-->
+<!--    <button type="submit">Add Resource</button>-->
+<!--</form>-->
+
+<!--</body>-->
+<!--</html>-->
+
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -9,6 +94,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 20px; /* Расстояние между карточками */
+            justify-content: center; /* Центровка карточек по горизонтали */
         }
         .card {
             width: calc(25% - 20px); /* Четыре карточки в ряду с отступом */
@@ -51,7 +137,7 @@
     </ul>
 </nav>
 
-<h1>Available Resources</h1>
+<h1 style="text-align: center">Available Resources</h1>
 
 <!-- Контейнер для карточек -->
 <div class="card-container">

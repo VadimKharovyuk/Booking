@@ -27,6 +27,6 @@ public class BookingListener {
 
 
         System.out.println(" Вызов сервиса для создания бронирования c bookingQueue" );
-        bookingService.createBooking(booking);
+//        bookingService.createBooking(booking);
     }
 }
